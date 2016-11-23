@@ -1,7 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <h2><%= @recipe.title %></h2>
+
+<% if !@recipe.pictures.empty? %>
+  <% if @recipe.pictures.count === 1 %>
+    <img src="/uploads/<%= @recipe.pictures.first.medium %>"  alt="">
+  <% else %>
+    <%= render partial: "partials/carousel", locals: {pictures: @recipe.pictures} %>
+  <% end %>
+<% end %>
+
 <p><%= @recipe.description %></p>
+
+<hr>
 
 <h4>Ingredients</h4>
 <ul>
@@ -17,6 +28,6 @@
   <% end %>
 </ul>
 
-
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+<% if @recipe.user === current_user %>
+  <%= link_to 'Edit', edit_recipe_path(@recipe) %>
+<% end %>

@@ -1,4 +1,4 @@
-<%= form_for(recipe) do |f| %>
+<%= form_for(recipe, html: {enctype: 'multipart/form-data'}) do |f| %>
   <% if recipe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -10,6 +10,9 @@
       </ul>
     </div>
   <% end %>
+
+  <%= label :picture, "Picture" %>
+  <%= file_field :picture, :image, multiple: true %>
 
   <%= f.label :title %>
   <%= f.text_field :title %>

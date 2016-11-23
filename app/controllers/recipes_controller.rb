@@ -27,6 +27,12 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
 
+    if params['picture']['image']
+      picture_params['image'].each do |image|
+        PictureUploader.process(image, @recipe.pictures.new)
+      end
+    end
+
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
@@ -41,6 +47,13 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
+
+    if params['picture']['image']
+      picture_params['image'].each do |image|
+        PictureUploader.process(image, @recipe.pictures.new)
+      end
+    end
+
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
@@ -71,5 +84,9 @@ class RecipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
       params.require(:recipe).permit(:title, :description, :cooking_time, :prep_time, :servings, :ingredients, :directions)
+    end
+
+    def picture_params
+      params.require(:picture).permit(image: [])
     end
 end
