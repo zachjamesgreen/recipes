@@ -33,7 +33,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
 
-    if params['picture']['image']
+    if params['picture']
       picture_params['image'].each do |image|
         PictureUploader.process(image, @recipe.pictures.new)
       end
@@ -54,7 +54,7 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1.json
   def update
 
-    if params['picture']['image']
+    if params['picture']
       picture_params['image'].each do |image|
         PictureUploader.process(image, @recipe.pictures.new)
       end

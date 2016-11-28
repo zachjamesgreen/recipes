@@ -1,10 +1,19 @@
 <% content_for :title, "Recipes"%>
-<div class="columns small-12 medium-3 large-4">
-  <% @recipes.each do |recipe| %>
-    <div class="recipe">
-      <h3><%= link_to recipe.title, recipe %></h3>
-      <p>Submitted by: <%= recipe.user.email%></p>
-      <p><%= recipe.description %></p>
-    </div>
-  <% end %>
-</div>
+
+<% @recipes.each do |recipe| %>
+
+<% if recipe === @recipes.last %>
+  <div class="recipe columns small-3 end">
+<% else %>
+  <div class="recipe columns small-3">
+<% end %>
+
+    <% if !recipe.pictures.empty? %>
+      <img src="/uploads/<%= recipe.pictures.first.thumb %>"  alt="">
+    <% end %>
+
+    <h3><%= link_to recipe.title, recipe %></h3>
+    <p>Submitted by: <%= recipe.user.email%></p>
+    <p><%= trim_desc recipe.description %></p>
+  </div>
+<% end %>
