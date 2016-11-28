@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+  <% if !recipe.pictures.empty? %>
+    <% recipe.pictures.each_with_index do |pic, i| %>
+      <%= image_tag(pic.thumb.url) %>
+      <label><%= check_box :remove_pictures, i %> Remove picture</label>
+    <% end %>
+  <% end %>
+
   <%= f.label :pictures, "Pictures" %>
   <%= f.file_field :pictures, multiple: true %>
 
