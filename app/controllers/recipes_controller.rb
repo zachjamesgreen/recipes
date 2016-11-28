@@ -55,7 +55,6 @@ class RecipesController < ApplicationController
     end
 
     if recipe_params['pictures']
-      add_more_images(recipe_params['pictures'])
     end
 
     respond_to do |format|
