@@ -12,6 +12,11 @@ class RecipesController < ApplicationController
   def show
   end
 
+  def favorites
+    @recipes = current_user.fav_recipes
+    ap @recipes
+  end
+
   # GET /recipes/new
   def new
     @recipe = Recipe.new

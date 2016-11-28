@@ -41,6 +41,7 @@
               <a href="#">User</a>
               <ul class="menu vertical">
                 <li><%= link_to "Your Recipes", recipes_path %></li>
+                <li><%= link_to "Fav Recipes", fav_recipes_path %></li>
                 <li><%= link_to "Create Recipe", new_recipe_path %></li>
                 <li><%= link_to "Profile", edit_user_registration_path %></li>
                 <li><%= link_to "Logout", destroy_user_session_path %></li>
@@ -83,6 +84,7 @@
                 <ul class="menu vertical">
                   <li><%= link_to "Your Recipes", recipes_path %></li>
                   <li><%= link_to "Create Recipe", new_recipe_path %></li>
+                  <li><%= link_to "Fav Recipes", fav_recipes_path %></li>
                   <li><%= link_to "Profile", edit_user_registration_path %></li>
                   <li><%= link_to "Logout", destroy_user_session_path, {method: 'delete'} %></li>
                 </ul>

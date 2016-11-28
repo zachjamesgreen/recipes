@@ -4,5 +4,10 @@ Rails.application.routes.draw do
   resources :recipes
   get '/search' => 'app#search'
 
+  get 'fav' => 'recipes#favorites', as: 'fav_recipes'
+
+  post '/favorite/:id' => 'user#favorite', as: 'fav'
+  delete '/favorite/:id' => 'user#remove_favorite', as: 'remove_fav'
+
   root to: 'app#index'
 end
