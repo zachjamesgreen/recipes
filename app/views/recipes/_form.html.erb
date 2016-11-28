@@ -11,8 +11,8 @@
     </div>
   <% end %>
 
-  <%= label :picture, "Picture" %>
-  <%= file_field :picture, :image, multiple: true %>
+  <%= f.label :pictures, "Pictures" %>
+  <%= f.file_field :pictures, multiple: true %>
 
   <%= f.label :title %>
   <%= f.text_field :title %>

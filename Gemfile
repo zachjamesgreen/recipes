@@ -53,4 +53,6 @@ gem 'foundation-rails'
 gem 'devise'
 gem 'mini_magick'
 gem 'font-awesome-sass'
-# gem "paperclip", "~> 5.0.0"
+gem 'delayed_job_active_record'
+gem "daemons"
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'

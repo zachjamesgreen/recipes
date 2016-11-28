@@ -8,9 +8,11 @@
   <div class="recipe columns small-3">
 <% end %>
 
-    <% if !recipe.pictures.empty? %>
-      <img src="/uploads/<%= recipe.pictures.first.thumb %>"  alt="">
-    <% end %>
+<% if !recipe.pictures.empty? %>
+<img src="<%= recipe.pictures[0].thumb.url %>"  alt="Pictue of <%= recipe.title %>">
+<% end %>
+
+
 
     <h3><%= link_to recipe.title, recipe %></h3>
     <p>Submitted by: <%= recipe.user.email%></p>

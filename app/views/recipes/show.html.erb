@@ -3,14 +3,12 @@
 
 <h2><%= @recipe.title %></h2> | <%= link_to "Fav", fav_path, {method: 'post'} %>
 
-
 <% if !@recipe.pictures.empty? %>
-  <% if @recipe.pictures.count === 1 %>
-    <img src="/uploads/<%= @recipe.pictures.first.medium %>"  alt="">
-  <% else %>
-    <%= render partial: "partials/carousel", locals: {pictures: @recipe.pictures} %>
+  <% @recipe.pictures.each do |pic| %>
+    <img src="<%= pic.medium.url %>"  alt="Pictue of <%= @recipe.title %>">
   <% end %>
 <% end %>
+
 
 <p><%= @recipe.description %></p>
 
