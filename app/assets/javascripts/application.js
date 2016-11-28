@@ -18,8 +18,4 @@
 
 $(function(){
   $(document).foundation();
-
-  $('#submit-button').click(function(e) {
-    window.location = '/search?term=' + $('#search').val()
-  })
 });

@@ -5,7 +5,7 @@ class AppController < ApplicationController
   end
 
   def search
-    @recipes = Recipe.where("title ILIKE '%#{params['term']}%'").order(updated_at: :desc)
+    @recipes = Recipe.where("title ILIKE '%#{params['search']}%'").order(updated_at: :desc)
     render 'index'
   end
 
