@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   post '/favorite/:id' => 'user#favorite', as: 'fav'
   delete '/favorite/:id' => 'user#remove_favorite', as: 'remove_fav'
 
+  post '/comment' => 'comment#create'
+
   root to: 'app#index'
 end

@@ -1,0 +1,6 @@
+<%= form_tag({controller: 'comment', action: 'create'}, method: 'post') do %>
+  <%= select :comment, :rating, ['1','2','3','4','5'] %>
+  <%= text_area :comment, :comment %>
+  <%= hidden_field :comment, :recipe_id, value: @recipe.id %>
+  <%= submit_tag("Submit") %>
+<% end %>

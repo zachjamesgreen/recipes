@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :recipes
   has_many :favorites
+  has_many :comments
 
   def fav_recipes
     Recipe.find(Favorite.where(user_id: self.id).collect(&:recipe_id))

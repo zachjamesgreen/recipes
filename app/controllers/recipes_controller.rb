@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_comments, only: [:show]
 
   # GET /recipes
   # GET /recipes.json
@@ -84,6 +85,10 @@ class RecipesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe
       @recipe = Recipe.find(params[:id])
+    end
+
+    def set_comments
+      @comments = @recipe.comments
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

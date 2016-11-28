@@ -10,10 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128003142) do
+ActiveRecord::Schema.define(version: 20161128020904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+# Could not dump table "comments" because of following StandardError
+#   Unknown type 'comment_status' for column 'status'
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id"
@@ -64,6 +67,8 @@ ActiveRecord::Schema.define(version: 20161128003142) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "comments", "recipes"
+  add_foreign_key "comments", "users"
   add_foreign_key "favorites", "recipes"
   add_foreign_key "favorites", "users"
   add_foreign_key "pictures", "recipes", on_delete: :cascade

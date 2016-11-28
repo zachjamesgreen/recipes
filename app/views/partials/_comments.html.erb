@@ -1,0 +1,8 @@
+<% @comments.each do |comment| %>
+
+<h4><%= comment.user.email %></h4>
+<p><%= comment.created_at %></p>
+<p><%= comment.rating %></p>
+<p><%= comment.comment %></p>
+
+<% end %>
