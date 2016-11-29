@@ -48,13 +48,18 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1.json
   def update
 
-    params['remove_pictures'].each do |k,v|
-      if v.to_i === 1
-        remove_image_at_index(k.to_i)
+    remove_pictures = params.require(:remove_pictures).permit! if params[:remove_pictures]
+    new_pictures = params.require(:recipe).permit(pictures: [])
+    # ap new_pictures
+
+    if remove_pictures
+      remove_pictures.each do |v|
+        @recipe.delete_image(v)
       end
     end
 
-    if recipe_params['pictures']
+    if new_pictures && new_pictures[:pictures]
+      add_more_images(new_pictures[:pictures])
     end
 
     respond_to do |format|
@@ -92,16 +97,11 @@ class RecipesController < ApplicationController
       images = @recipe.pictures
       images += new_images
       @recipe.pictures = images
-    end
-
-    def remove_image_at_index(index)
-      remain_images = @recipe.pictures # copy the array
-      deleted_image = remain_images.delete_at(index) # delete the target image
-      @recipe.pictures = remain_images # re-assign back
+      @recipe.save
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:title, :description, :cooking_time, :prep_time, :servings, :ingredients, :directions, {pictures: [], remove_pictures: []})
+      params.require(:recipe).permit(:title, :description, :cooking_time, :prep_time, :servings, :ingredients, :directions)
     end
 end
