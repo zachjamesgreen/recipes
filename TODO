@@ -1,0 +1,33 @@
+Work on recipe rating. gather rating from all comments per recipe.
+
+work on redirect back to previous page on sign in.
+
+Work on adding an icon for fav.
+
+Work on variable refresh for Fav and comments.
+
+add model and database constraints to all models
+
+add approval system for comments
+
+
+
+
+
+
+work on deployment
+
+look in to using Oauth login
+
+add logging
+
+add tests
+
+
+
+
+
+
+
+
+Add Admin area
