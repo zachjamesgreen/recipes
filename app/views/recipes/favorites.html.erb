@@ -1,24 +1,28 @@
 <% content_for :title, "Your Favorite Recipes"%>
-<p id="notice"><%= notice %></p>
 
-<h1>Recipes</h1>
+<div class="columns small-12">
+  <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>Fav Recipes</h1>
+</div>
 
-  <tbody>
-    <% @recipes.each do |recipe| %>
-      <tr>
-        <td><%= recipe.title %></td>
-        <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to "Remove from Fav", remove_fav_path(recipe), {method: 'delete'} %></td>
 
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<% @recipes.each do |recipe| %>
+  <div class="columns small-12 recipe-index <%= recipe === @recipes.last ? 'end' : '' %>">
+
+    <div class="pic columns small-3">
+      <%= image_tag(recipe.pictures[0].thumb.url) if recipe.pictures[0] %>
+    </div>
+
+    <div class="columns small-9">
+      <div class="columns small-12">
+        <h3><%= link_to recipe.title, recipe %></h3>
+      </div>
+      <div class="columns small-12">
+        <%= link_to "Remove from Fav", remove_fav_path(recipe), {method: 'delete'} %>
+      </div>
+    </div>
+
+  </div>
+<% end %>

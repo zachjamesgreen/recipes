@@ -1,6 +1,22 @@
 <%= form_tag({controller: 'comment', action: 'create'}, method: 'post') do %>
-  <%= select :comment, :rating, ['1','2','3','4','5'] %>
-  <%= text_area :comment, :comment %>
+
+  <div class="rating">
+    <span>Rating: </span>
+    <%= radio_button :comment, :rating, 1 %>
+    <label class="fa fa-star-o" for="comment_rating_1"></label>
+    <%= radio_button :comment, :rating, 2 %>
+    <label class="fa fa-star-o" for="comment_rating_2"></label>
+    <%= radio_button :comment, :rating, 3 %>
+    <label class="fa fa-star-o" for="comment_rating_3"></label>
+    <%= radio_button :comment, :rating, 4 %>
+    <label class="fa fa-star-o" for="comment_rating_4"></label>
+    <%= radio_button :comment, :rating, 5 %>
+    <label class="fa fa-star-o" for="comment_rating_5"></label>
+  </div>
+
+  <%= label :comment, :comment %>
+  <%= text_area :comment, :comment, {rows: 5} %>
   <%= hidden_field :comment, :recipe_id, value: @recipe.id %>
   <%= submit_tag("Submit") %>
+
 <% end %>

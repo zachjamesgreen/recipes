@@ -1,8 +1,19 @@
 <% @comments.each do |comment| %>
 
-<h4><%= comment.user.email %></h4>
-<p><%= comment.created_at %></p>
-<p><%= comment.rating %></p>
-<p><%= comment.comment %></p>
+  <% if comment === @comments.last %>
+    <div class="columns small-12 medium-4 large-3 comment end">
+  <% else %>
+    <div class="columns small-12 medium-4 large-3 comment">
+  <% end %>
 
+    <h4><%= comment.user.username %></h4>
+    <p><%= comment.created_at %></p>
+    <p>
+    <% (1..comment.rating).each do |i| %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+    <% end %>
+    </p>
+    <p><%= comment.comment %></p>
+
+  </div>
 <% end %>

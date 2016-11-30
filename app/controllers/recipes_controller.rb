@@ -53,8 +53,10 @@ class RecipesController < ApplicationController
     # ap new_pictures
 
     if remove_pictures
-      remove_pictures.each do |v|
-        @recipe.delete_image(v)
+      remove_pictures.each do |k,v|
+        if v.to_i === 1
+          @recipe.delete_image(k)
+        end
       end
     end
 

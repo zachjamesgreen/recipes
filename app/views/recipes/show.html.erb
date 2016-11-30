@@ -1,40 +1,58 @@
 <% content_for :title, @recipe.title %>
-<p id="notice"><%= notice %></p>
 
-<h2><%= @recipe.title %></h2> | <%= link_to "Fav", fav_path, {method: 'post'} %>
+<div class="columns small-11">
+  <p id="notice"><%= notice %></p>
 
-<% if !@recipe.pictures.empty? %>
-  <% if @recipe.pictures.count > 1 %>
-    <%= render partial: 'partials/carousel', locals: {pictures: @recipe.pictures} %>
+  <%= link_to "Fav", fav_path, {method: 'post'} %>
+  <h2><%= @recipe.title %></h2>
+  <p>
+    <i class="fa fa-star" aria-hidden="true"></i>
+    <i class="fa fa-star" aria-hidden="true"></i>
+    <i class="fa fa-star" aria-hidden="true"></i>
+    <i class="fa fa-star" aria-hidden="true"></i>
+    <i class="fa fa-star" aria-hidden="true"></i>
+  </p>
+
+  <% if !@recipe.pictures.empty? %>
+    <% if @recipe.pictures.count > 1 %>
+      <%= render partial: 'partials/carousel', locals: {pictures: @recipe.pictures} %>
+    <% else %>
+      <img id="recipe_picture-single" src="<%= @recipe.pictures[0].medium.url %>"  alt="">
+    <% end %>
+  <% end %>
+
+
+  <p><%= @recipe.description %></p>
+
+  <hr>
+
+  <h4>Ingredients</h4>
+  <ul>
+    <% @recipe.ingredients.split(/\r/).each do |i| %>
+      <li><%= i %></li>
+    <% end %>
+  </ul>
+
+  <h4>Directions</h4>
+  <ol>
+    <% @recipe.directions.split(/\r/).each do |i| %>
+      <li><%= i %></li>
+    <% end %>
+  </ol>
+
+  <% if @recipe.user === current_user %>
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %>
+  <% end %>
+
+</div>
+<hr>
+
+<div class="columns small-12">
+  <% if user_signed_in? %>
+    <%= render partial: "partials/comment_form"%>
   <% else %>
-    <img id="recipe_picture-single" src="<%= @recipe.pictures[0].medium.url %>"  alt="">
+    <%= link_to "Login to leave a comment",  "#{new_user_session_path}?reback=#{request.original_url}" %>
   <% end %>
-<% end %>
+</div>
 
-
-<p><%= @recipe.description %></p>
-
-<hr>
-
-<h4>Ingredients</h4>
-<ul>
-  <% @recipe.ingredients.split(/\r/).each do |i| %>
-    <li><%= i %></li>
-  <% end %>
-</ul>
-
-<h4>Directions</h4>
-<ul>
-  <% @recipe.directions.split(/\r/).each do |i| %>
-    <li><%= i %></li>
-  <% end %>
-</ul>
-
-<% if @recipe.user === current_user %>
-  <%= link_to 'Edit', edit_recipe_path(@recipe) %>
-<% end %>
-
-<hr>
-
-<%= render partial: "partials/comment_form"%>
 <%= render partial: "partials/comments" %>

@@ -15,7 +15,8 @@
 
 
     <h3><%= link_to recipe.title, recipe %></h3>
-    <p>Submitted by: <%= recipe.user.email%></p>
     <p><%= trim_desc recipe.description %></p>
+    <hr>
+    <p>Submitted by: <em><%= recipe.user.username%></em></p>
   </div>
 <% end %>

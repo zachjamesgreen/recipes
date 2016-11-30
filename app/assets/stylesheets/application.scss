@@ -18,3 +18,16 @@
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  position: relative;
+  padding: 0.5rem;
+  bottom: 0;
+  height: 4.5rem;
+  width: 100%;
+  border-top: 1px solid #B3BFC7;
+}
